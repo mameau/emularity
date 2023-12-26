@@ -1132,7 +1132,6 @@ var Module = null;
    var build_mame_arguments = function (muted, driver, native_resolution, sample_rate, peripheral, autoboot, extra_args, keepaspect, scale) {
      scale = scale || 1;
      var args = [driver,
-                 '-verbose',
                  '-rompath', 'emulator',
                  '-window',
                  keepaspect ? '-keepaspect' : '-nokeepaspect'];
@@ -1156,8 +1155,7 @@ var Module = null;
      if (peripheral) {
        for (var p in peripheral) {
          if (Object.prototype.propertyIsEnumerable.call(peripheral, p)) {
-           args.push('-' + p,
-                     '/emulator/'+ (peripheral[p][0].replace(/\//g,'_')));
+           args.push('-' + p, peripheral[p][0]);
          }
        }
      }
